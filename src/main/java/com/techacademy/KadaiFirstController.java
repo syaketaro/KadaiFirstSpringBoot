@@ -2,10 +2,10 @@ package com.techacademy;
 
 
 
-import java.time.DayOfWeek;
+//import java.time.DayOfWeek;
 import java.time.LocalDate;
 //import java.time.LocalDateTime;
-//import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,13 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class KadaiFirstController {
 	
+	@GetMapping("/dayofweek/{yyyymmdd}")
+	public LocalDate dispDayOfWeek(@PathVariable String yyyymmdd) {
+		LocalDate youbi = LocalDate.parse(yyyymmdd, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+		return youbi;
+	}
 	
-	@GetMapping("/dayofweek/{yyyy}/{mm}/{dd}")
+	
+	
+	/*@GetMapping("/dayofweek/{yyyy}/{mm}/{dd}")
 	public DayOfWeek dispDayOfWeek(@PathVariable int yyyy,@PathVariable int mm, @PathVariable int dd) {
 		LocalDate week = LocalDate.of(yyyy, mm, dd);
 		return week.getDayOfWeek();
 	}
-
+	*/
 	
 	/*@GetMapping("now")
 	public String dispTime() {
