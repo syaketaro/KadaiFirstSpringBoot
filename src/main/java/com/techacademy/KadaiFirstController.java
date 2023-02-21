@@ -3,31 +3,56 @@ package com.techacademy;
 
 
 import java.time.DayOfWeek;
+//import java.time.DayOfWeek;
 import java.time.LocalDate;
 //import java.time.LocalDateTime;
-//import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter;
+//import java.time.format.TextStyle;
+//import java.util.Locale;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class KadaiFirstController {
 	
-	/*@GetMapping("/dayofweek/{yyyymmdd}")
-	public LocalDate dispDayOfWeek(@PathVariable String yyyymmdd) {
-		LocalDate youbi = LocalDate.parse(yyyymmdd, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-		return youbi;
+	@GetMapping("/dayofweek/{yyyymmdd}")
+	public String dispDayOfWeek(@PathVariable String yyyymmdd) {
+		LocalDate youbi = LocalDate.parse(yyyymmdd, DateTimeFormatter.ofPattern("yyyyMMdd"));
+		DayOfWeek week = youbi.getDayOfWeek();
+		
+		switch(week) {
+		case MONDAY :
+			return "Monday";
+		case TUESDAY :
+			return "Tuesday";
+		case WEDNESDAY :
+			return "Wednesday";
+		case THURSDAY :
+			return "Thursday";
+		case FRIDAY :
+			return "Friday";
+		case SATURDAY :
+			return "Saturday";
+		case SUNDAY :
+			return "Sunday";
+		}
+		/*enum DayOfWeek {
+		    
+		    Monday,
+		    Tuesday,
+		    Wednesday,
+		    Thursday,
+		    Friday,
+		    Saturday,
+		    Sunday,
+		}*/
+		
+		
+		return week.toString();
 	}
-	*/
-	
-	
-	@GetMapping("/dayofweek/{yyyy}/{mm}/{dd}")
-	public DayOfWeek dispDayOfWeek(@PathVariable int yyyy,@PathVariable int mm, @PathVariable int dd) {
-		LocalDate week = LocalDate.of(yyyy, mm, dd);
-		return week.getDayOfWeek();
-	}
+	 
 	
 	
 	/*@GetMapping("now")
